@@ -1,4 +1,8 @@
+# Rider creates an .idea folder
+.idea/
 Binaries
+# Unreal creates a Build folder after cooking
+Build/
 DerivedDataCache
 Intermediate
 Saved
