@@ -42,6 +42,7 @@ public:
 
 public:
 	static FName DefaultNameForLocationAlongSplineObservation();
+	static FName DefaultNameForLocationDifferenceAboveThresholdCompletion();
 	static FName DefaultNameForDirectionAlongSplineObservation();
 	static FName DefaultNameForVelocityObservation();
 };

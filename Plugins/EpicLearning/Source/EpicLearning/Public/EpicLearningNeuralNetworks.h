@@ -8,11 +8,11 @@
 
 class ULearningAgentsNeuralNetwork;
 
-USTRUCT(BlueprintType)
-struct EPICLEARNING_API FEpicLearningNeuralNetworks
+UCLASS(BlueprintType)
+class EPICLEARNING_API UEpicLearningNeuralNetworks : public UDataAsset
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Neural Networks")
 	ULearningAgentsNeuralNetwork* EncoderNeuralNetwork;
 

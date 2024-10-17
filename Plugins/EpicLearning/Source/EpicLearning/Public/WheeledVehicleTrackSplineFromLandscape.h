@@ -25,6 +25,8 @@ public:
 	// Builds the spline component from an existing landscape spline
 	bool BuildTrackSplineFromLandscapeSpline() const;
 
+	USplineComponent* GetTrackSplineComponent() const { return TrackSpline; }
+
 protected:
 	/** Spline component for the track */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Track Spline", meta = (AllowPrivateAccess = "true"))

@@ -73,6 +73,11 @@ FName UEpicLearningNamesBPFL::DefaultNameForLocationAlongSplineObservation()
 	static FName LiteralName{ "LocationAlongSplineObservation" };
 	return LiteralName;
 }
+FName UEpicLearningNamesBPFL::DefaultNameForLocationDifferenceAboveThresholdCompletion()
+{
+	static FName LiteralName{ "LocationDifferenceAboveThresholdCompletion" };
+	return LiteralName;
+}
 FName UEpicLearningNamesBPFL::DefaultNameForDirectionAlongSplineObservation()
 {
 	static FName LiteralName{ "DirectionAlongSplineObservation" };

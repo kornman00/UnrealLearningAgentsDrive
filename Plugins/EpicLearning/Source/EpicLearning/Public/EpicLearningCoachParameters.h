@@ -9,11 +9,11 @@
 
 #include "EpicLearningCoachParameters.generated.h"
 
-USTRUCT(BlueprintType)
-struct EPICLEARNING_API FEpicLearningCoachParameters
+UCLASS(BlueprintType)
+class EPICLEARNING_API UEpicLearningCoachParameters : public UDataAsset
 {
 	GENERATED_BODY()
-
+public:
 	/** Fed into MakePolicy and MakeCritic */
 	UPROPERTY(EditAnywhere, Category = "Manager Settings")
 	int RandomSeed = 0;
