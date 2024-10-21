@@ -24,6 +24,8 @@ AEpicLearningCarsCoach::AEpicLearningCarsCoach()
 
 void AEpicLearningCarsCoach::PostInitializeComponents()
 {
+	Super::PostInitializeComponents();
+
 	if (FindWheeledVehicleTrackSplineFromLandscape())
 	{
 		WheeledVehicleTrackSplineFromLandscape->TrackSplineReadyEvent.AddUniqueDynamic(this, &ThisClass::OnTrackSplineReady);

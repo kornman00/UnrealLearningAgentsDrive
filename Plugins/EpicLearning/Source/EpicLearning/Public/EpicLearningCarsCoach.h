@@ -52,16 +52,16 @@ protected:
 
 	// Objects managed by the Coach
 protected:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Coach State|Learning Objects")
+	UPROPERTY(Transient, BlueprintReadOnly, Category = "Coach State|Learning Objects")
 	UEpicLearningCarsInteractor* Interactor = nullptr;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Coach State|Learning Objects")
+	UPROPERTY(Transient, BlueprintReadOnly, Category = "Coach State|Learning Objects")
 	ULearningAgentsPolicy* Policy = nullptr;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Coach State|Learning Objects")
+	UPROPERTY(Transient, BlueprintReadOnly, Category = "Coach State|Learning Objects")
 	ULearningAgentsCritic* Critic = nullptr;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Coach State|Learning Objects")
+	UPROPERTY(Transient, BlueprintReadOnly, Category = "Coach State|Learning Objects")
 	UEpicLearningCarsTrainer* Trainer = nullptr;
 
 	// Actor Properties

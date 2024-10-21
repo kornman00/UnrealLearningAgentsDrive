@@ -42,6 +42,6 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Reset State")
 	float ResetHeight = 50.0f;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agent State")
+	UPROPERTY(Transient, BlueprintReadWrite, Category = "Agent State")
 	int32 AgentId = INDEX_NONE;
 };
