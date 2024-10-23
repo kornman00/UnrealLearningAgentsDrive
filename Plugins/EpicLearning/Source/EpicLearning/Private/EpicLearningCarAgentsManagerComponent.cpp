@@ -8,6 +8,6 @@ UEpicLearningCarAgentsManagerComponent::UEpicLearningCarAgentsManagerComponent()
 
 void UEpicLearningCarAgentsManagerComponent::PostInitProperties()
 {
-	Super::PostInitProperties();
 	MaxAgentNum = 32;
+	Super::PostInitProperties();
 }
