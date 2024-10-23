@@ -9,6 +9,7 @@
 
 #include <ChaosWheeledVehicleMovementComponent.h>
 #include <Components/SplineComponent.h>
+#include <VisualLogger/VisualLogger.h>
 
 UEpicLearningCarsInteractor::UEpicLearningCarsInteractor()
 {
@@ -181,8 +182,8 @@ void UEpicLearningCarsInteractor::SpecifyAgentAction_Implementation(
 			});
 
 	constexpr int ActionElementsCount = 2;
-	PerformAgentActionNamesStorage.Reserve(ActionElementsCount);
-	PerformAgentActionObjectsStorage.Reserve(ActionElementsCount);
+	PerformAgentActionNamesStorage.Init(NAME_None, ActionElementsCount);
+	PerformAgentActionObjectsStorage.AddDefaulted(ActionElementsCount);
 }
 
 void UEpicLearningCarsInteractor::PerformAgentAction_Implementation(
