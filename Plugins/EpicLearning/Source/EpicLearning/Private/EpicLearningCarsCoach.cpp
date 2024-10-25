@@ -31,7 +31,7 @@ void AEpicLearningCarsCoach::PostInitializeComponents()
 		WheeledVehicleTrackSplineFromLandscape->TrackSplineReadyEvent.AddUniqueDynamic(this, &ThisClass::OnTrackSplineReady);
 	}
 	else if (const UWorld* TheWorld = GetWorld();
-		TheWorld->IsGameWorld() || TheWorld->IsEditorWorld())
+		(TheWorld->IsGameWorld() || TheWorld->IsEditorWorld()) && !TheWorld->IsPreviewWorld())
 	{
 		UE_VLOG_ALWAYS_UELOG(this, LogEpicLearning, Error,
 			TEXT("Learning Cars Coach could not bind with any track splines"));

@@ -19,6 +19,7 @@ class AWheeledVehicleTrackSplineFromLandscape;
 class ULearningAgentsCritic;
 class ULearningAgentsPolicy;
 
+// #TODO Rename to AEpicLearningCarsReinforcementCoach
 UCLASS()
 class EPICLEARNING_API AEpicLearningCarsCoach : public AActor
 {

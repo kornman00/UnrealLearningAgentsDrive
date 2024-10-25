@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "WheeledVehiclePawn.h"
+
 #include "EpicLearningWheeledVehiclePawn.generated.h"
 
 /**
@@ -20,14 +21,21 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
+	void RegisterWithLearningAgentsManager();
+
 public:
 	UFUNCTION(BlueprintCallable, Category = "Reset State")
-	void ResetToRandomPointOnSpline(USplineComponent* Spline, const TArray<AActor*>& Agents);
+	void ResetToRandomPointOnSpline(const USplineComponent* Spline, const TArray<AActor*>& Agents);
 
 	bool IsVisualLoggerEnabledForAgent() const;
 
 protected:
-	void RegisterWithLearningAgentsManager();
+	UFUNCTION(BlueprintCallable)
+	void HandleEnhancedInputActionThrottle(const float InThrottleActionValue);
+	UFUNCTION(BlueprintCallable)
+	void HandleEnhancedInputActionBrake(const float InBrakeActionValue);
+	UFUNCTION(BlueprintCallable)
+	void HandleEnhancedInputActionSteering(const float InSteeringActionValue);
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Reset State")
@@ -44,4 +52,10 @@ protected:
 
 	UPROPERTY(Transient, BlueprintReadWrite, Category = "Agent State")
 	int32 AgentId = INDEX_NONE;
+
+	UPROPERTY(Transient, BlueprintReadWrite, Category = "Agent State")
+	float ThrottleBrakeAction = 0.0f;
+
+	UPROPERTY(Transient, BlueprintReadWrite, Category = "Agent State")
+	float SteeringAction = 0.0f;
 };

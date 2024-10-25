@@ -9,6 +9,7 @@
 
 #include "EpicLearningCoachParameters.generated.h"
 
+// #TODO Rename to UEpicLearningReinforcementCoachParameters
 UCLASS(BlueprintType)
 class EPICLEARNING_API UEpicLearningCoachParameters : public UDataAsset
 {

@@ -60,7 +60,7 @@ void AEpicLearningWheeledVehiclePawn::RegisterWithLearningAgentsManager()
 }
 
 void AEpicLearningWheeledVehiclePawn::ResetToRandomPointOnSpline(
-	USplineComponent* Spline,
+	const USplineComponent* Spline,
 	const TArray<AActor*>& Agents)
 {
 	// https://dev.epicgames.com/community/learning/courses/kRm/unreal-engine-learning-agents-5-4/owjW/unreal-engine-learning-to-drive-5-4#resettingepisodes
@@ -147,4 +147,19 @@ bool AEpicLearningWheeledVehiclePawn::IsVisualLoggerEnabledForAgent() const
 {
 	//return this->IsPlayerControlled();
 	return true;
+}
+
+void AEpicLearningWheeledVehiclePawn::HandleEnhancedInputActionThrottle(const float InThrottleActionValue)
+{
+	ThrottleBrakeAction = InThrottleActionValue;
+}
+
+void AEpicLearningWheeledVehiclePawn::HandleEnhancedInputActionBrake(const float InBrakeActionValue)
+{
+	ThrottleBrakeAction = 0.0f - InBrakeActionValue;
+}
+
+void AEpicLearningWheeledVehiclePawn::HandleEnhancedInputActionSteering(const float InSteeringActionValue)
+{
+	SteeringAction = InSteeringActionValue;
 }

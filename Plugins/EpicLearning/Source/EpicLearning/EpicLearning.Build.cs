@@ -19,10 +19,10 @@ public class EpicLearning : ModuleRules
 		PublicDependencyModuleNames.AddRange(new string[] {
 			"Core",
 			// ... add other public dependencies that you statically link with here ...
+			"ChaosVehicles",
 			"Landscape",
 			"LearningAgents",
 			"LearningAgentsTraining",
-			"ChaosVehicles",
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {
