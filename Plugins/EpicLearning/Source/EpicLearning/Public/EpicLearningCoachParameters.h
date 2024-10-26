@@ -2,16 +2,16 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
-#include "LearningAgentsPolicy.h"
-#include "LearningAgentsCritic.h"
-#include "LearningAgentsTrainer.h"
+#include <CoreMinimal.h>
+#include <LearningAgentsCritic.h>
+#include <LearningAgentsImitationTrainer.h>
+#include <LearningAgentsPolicy.h>
+#include <LearningAgentsTrainer.h>
 
 #include "EpicLearningCoachParameters.generated.h"
 
-// #TODO Rename to UEpicLearningReinforcementCoachParameters
-UCLASS(BlueprintType)
-class EPICLEARNING_API UEpicLearningCoachParameters : public UDataAsset
+UCLASS(BlueprintType, Abstract)
+class EPICLEARNING_API UEpicLearningTrainingCoachParametersBase : public UDataAsset
 {
 	GENERATED_BODY()
 public:
@@ -28,13 +28,6 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Learning Settings")
 	FLearningAgentsCriticSettings CriticSettings {};
 
-	/** Fed into MakeTrainer */
-	UPROPERTY(EditAnywhere, Category = "Learning Settings")
-	FLearningAgentsTrainerSettings TrainerSettings {};
-
-	/** Fed into RunTraining */
-	UPROPERTY(EditAnywhere, Category = "Learning Settings")
-	FLearningAgentsTrainerTrainingSettings TrainerTrainingSettings {};
 
 	/** Fed into RunTraining */
 	UPROPERTY(EditAnywhere, Category = "Learning Settings")
@@ -43,4 +36,41 @@ public:
 	/** Fed into RunTraining */
 	UPROPERTY(EditAnywhere, Category = "Learning Settings")
 	FLearningAgentsTrainerPathSettings TrainerPathSettings {};
+};
+
+// #TODO Rename to UEpicLearningReinforcementCoachParameters
+UCLASS(BlueprintType)
+class EPICLEARNING_API UEpicLearningCoachParameters : public UEpicLearningTrainingCoachParametersBase
+{
+	GENERATED_BODY()
+public:
+	/** Fed into MakeTrainer */
+	UPROPERTY(EditAnywhere, Category = "Learning Settings|Reinforcement")
+	FLearningAgentsTrainerSettings TrainerSettings {};
+
+	/** Fed into RunTraining */
+	UPROPERTY(EditAnywhere, Category = "Learning Settings|Reinforcement")
+	FLearningAgentsTrainerTrainingSettings TrainerTrainingSettings {};
+};
+
+UCLASS(BlueprintType)
+class EPICLEARNING_API UEpicLearningImitationCoachParameters : public UEpicLearningTrainingCoachParametersBase
+{
+	GENERATED_BODY()
+public:
+	/** Fed into MakeTrainer */
+	UPROPERTY(EditAnywhere, Category = "Learning Settings|Imitation")
+	FLearningAgentsImitationTrainerSettings TrainerSettings {};
+
+	/** Fed into RunTraining */
+	UPROPERTY(EditAnywhere, Category = "Learning Settings|Imitation")
+	FLearningAgentsImitationTrainerTrainingSettings TrainerTrainingSettings {};
+
+	/** Fed into RunInference */
+	UPROPERTY(EditAnywhere, Category = "Learning Settings|Imitation")
+	float ActionNoiseScale = 1.0f;
+
+	/** Agents are reset after this many seconds */
+	UPROPERTY(EditAnywhere, Category = "Learning Settings|Imitation")
+	float AgentsResetFrequency = 10.0f;
 };

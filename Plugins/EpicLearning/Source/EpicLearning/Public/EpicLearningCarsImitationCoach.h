@@ -7,18 +7,20 @@
 #include <CoreMinimal.h>
 #include <GameFramework/Actor.h>
 
-#include "EpicLearningCarsCoach.generated.h"
+#include "EpicLearningCarsImitationCoach.generated.h"
 
-class UEpicLearningCarsTrainer;
-class UEpicLearningCoachParameters;
+class UEpicLearningImitationCoachParameters;
 
-// #TODO Rename to AEpicLearningCarsReinforcementCoach
+class ULearningAgentsImitationTrainer;
+class ULearningAgentsRecording;
+
 UCLASS()
-class EPICLEARNING_API AEpicLearningCarsCoach : public AEpicLearningCarsTrainingCoachBase
+class EPICLEARNING_API AEpicLearningCarsImitationCoach : public AEpicLearningCarsTrainingCoachBase
 {
 	GENERATED_BODY()
+
 public:
-	AEpicLearningCarsCoach();
+	AEpicLearningCarsImitationCoach();
 
 protected:
 	virtual const UEpicLearningTrainingCoachParametersBase* GetCoachParametersBase() const override;
@@ -29,11 +31,17 @@ public:
 
 	// Objects managed by the Coach
 protected:
+	UPROPERTY(Transient, BlueprintReadOnly, Category = "Coach State")
+	float ResetAgentsTimer = 0.0f;
+
 	UPROPERTY(Transient, BlueprintReadOnly, Category = "Coach State|Learning Objects")
-	UEpicLearningCarsTrainer* Trainer = nullptr;
+	ULearningAgentsImitationTrainer* Trainer = nullptr;
 
 	// Actor Properties
 public:
 	UPROPERTY(EditAnywhere, Category = "Coach Settings")
-	TObjectPtr<UEpicLearningCoachParameters> CoachingParameters = nullptr;
+	TObjectPtr<UEpicLearningImitationCoachParameters> CoachingParameters = nullptr;
+
+	UPROPERTY(EditAnywhere, Category = "Coach Settings")
+	TObjectPtr<ULearningAgentsRecording> Recording = nullptr;
 };

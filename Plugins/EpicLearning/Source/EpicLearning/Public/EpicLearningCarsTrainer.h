@@ -2,12 +2,14 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
-#include "LearningAgentsTrainer.h"
+#include <CoreMinimal.h>
+#include <LearningAgentsTrainer.h>
+
 #include "EpicLearningCarsTrainer.generated.h"
 
 class USplineComponent;
 
+// #TODO Rename to UEpicLearningCarsReinforcementTrainer
 UCLASS()
 class EPICLEARNING_API UEpicLearningCarsTrainer : public ULearningAgentsTrainer
 {
