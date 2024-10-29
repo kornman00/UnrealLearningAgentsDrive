@@ -62,7 +62,7 @@ void AEpicLearningCarsRecordingCoach::InitializeForNewTrackSpline()
 {
 	Super::InitializeForNewTrackSpline();
 
-
+	InitializeRecordingManagers();
 }
 
 bool AEpicLearningCarsRecordingCoach::InitializeRecordingManagers()
