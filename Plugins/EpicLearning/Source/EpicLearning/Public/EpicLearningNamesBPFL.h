@@ -41,6 +41,12 @@ public:
 	static FName CarAgentObservationNameSelf();
 
 public:
+	UFUNCTION(BlueprintPure, Category = "Car State")
+	static FName CarStateNameSteering();
+	UFUNCTION(BlueprintPure, Category = "Car State")
+	static FName CarStateNameThrottleBrake();
+
+public:
 	static FName DefaultNameForLocationAlongSplineObservation();
 	static FName DefaultNameForLocationDifferenceAboveThresholdCompletion();
 	static FName DefaultNameForDirectionAlongSplineObservation();

@@ -29,6 +29,9 @@ public:
 
 	bool IsVisualLoggerEnabledForAgent() const;
 
+	float GetThrottleBrakeAction() const { return ThrottleBrakeAction; }
+	float GetSteeringAction() const { return SteeringAction; }
+
 protected:
 	UFUNCTION(BlueprintCallable)
 	void HandleEnhancedInputActionThrottle(const float InThrottleActionValue);

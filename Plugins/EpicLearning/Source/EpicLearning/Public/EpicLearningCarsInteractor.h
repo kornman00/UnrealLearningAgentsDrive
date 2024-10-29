@@ -36,7 +36,7 @@ protected:
 		const int32 AgentId) override;
 
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Track")
+	UPROPERTY(Transient, BlueprintReadWrite, Category = "Track")
 	USplineComponent* TrackSpline = nullptr;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Observations")

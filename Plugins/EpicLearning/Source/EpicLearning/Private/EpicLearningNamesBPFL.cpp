@@ -68,6 +68,18 @@ FName UEpicLearningNamesBPFL::CarAgentObservationNameSelf()
 	return LiteralName;
 }
 
+FName UEpicLearningNamesBPFL::CarStateNameSteering()
+{
+	static FName LiteralName{ "Steering" };
+	return LiteralName;
+}
+
+FName UEpicLearningNamesBPFL::CarStateNameThrottleBrake()
+{
+	static FName LiteralName{ "ThrottleBrake" };
+	return LiteralName;
+}
+
 FName UEpicLearningNamesBPFL::DefaultNameForLocationAlongSplineObservation()
 {
 	static FName LiteralName{ "LocationAlongSplineObservation" };
