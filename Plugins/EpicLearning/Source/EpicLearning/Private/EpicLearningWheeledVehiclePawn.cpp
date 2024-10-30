@@ -102,15 +102,20 @@ void AEpicLearningWheeledVehiclePawn::ResetToRandomPointOnSpline(
 
 		// Check proximity to all other agents
 		bInvalidTransform = false;
-		for (UObject* Agent : Agents)
+		// If we're doing imitation learning on a single agent (e.g. the player) this could be empty
+		// or have just a single entry (itself) in which case we're going to waste a few cycles.
+		if (!Agents.IsEmpty())
 		{
-			if (const auto* AgentActor = Cast<AActor>(Agent);
-				AgentActor != nullptr && AgentActor != this)
+			for (UObject* Agent : Agents)
 			{
-				if (FVector::Distance(CandidateTransform.GetLocation(), AgentActor->GetActorLocation()) < 1500.0)
+				if (const auto* AgentActor = Cast<AActor>(Agent);
+					AgentActor != nullptr && AgentActor != this)
 				{
-					bInvalidTransform = true;
-					break;
+					if (FVector::Distance(CandidateTransform.GetLocation(), AgentActor->GetActorLocation()) < 1500.0)
+					{
+						bInvalidTransform = true;
+						break;
+					}
 				}
 			}
 		}

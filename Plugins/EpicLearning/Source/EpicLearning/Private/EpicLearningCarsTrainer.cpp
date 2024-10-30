@@ -87,7 +87,11 @@ void UEpicLearningCarsTrainer::ResetAgentEpisode_Implementation(const int32 Agen
 	AllAgentsAsActors.Reserve(AllAgentsArrayView.Num());
 	for (TObjectPtr<UObject> Other : AllAgentsArrayView)
 	{
-		AllAgentsAsActors.Add(StaticCast<AActor*>(Other));
+		// At runtime, it is possible there are not Agents registered to the MaxAgentNum
+		if (IsValid(Other))
+		{
+			AllAgentsAsActors.Add(StaticCast<AActor*>(Other));
+		}
 	}
 
 	// Reset to random point on track

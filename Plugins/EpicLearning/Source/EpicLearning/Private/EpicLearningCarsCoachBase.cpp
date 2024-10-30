@@ -104,7 +104,42 @@ void AEpicLearningCarsCoachBase::InitializeAgents()
 	}
 }
 
-void AEpicLearningCarsCoachBase::ResetAgentsToRandomPointOnSpline()
+void AEpicLearningCarsCoachBase::DeleteAllPossibleAgentPawnsInWorldExceptTheLocalPlayer() const
+{
+	TArray<AActor*> AllAgentsInTheWorld;
+
+	for (FActorIterator It(this->GetWorld(), AEpicLearningWheeledVehiclePawn::StaticClass()); It; ++It)
+	{
+		auto* AgentInWorld = Cast<AEpicLearningWheeledVehiclePawn>(*It);
+
+		if (AgentInWorld->GetLearningAgentId() != INDEX_NONE)
+		{
+			UE_LOGFMT(LogEpicLearning, Warning, "Not deleting {0} as it is already registered",
+				AgentInWorld->GetName());
+		}
+		else if (AgentInWorld->IsPlayerControlled())
+		{
+			UE_LOGFMT(LogEpicLearning, Log, "Not deleting {0} as it is player controlled",
+				AgentInWorld->GetName());
+		}
+		else
+		{
+			AllAgentsInTheWorld.Add(AgentInWorld);
+		}
+	}
+
+	if (!AllAgentsInTheWorld.IsEmpty())
+	{
+		UE_LOGFMT(LogEpicLearning, Warning, "Deleting {0} possible agent pawns",
+			AllAgentsInTheWorld.Num());
+		for (AActor* AgentInWorld : AllAgentsInTheWorld)
+		{
+			this->GetWorld()->DestroyActor(AgentInWorld);
+		}
+	}
+}
+
+void AEpicLearningCarsCoachBase::ResetAgentsToRandomPointOnSpline() const
 {
 	const USplineComponent* TrackSpline = WheeledVehicleTrackSplineFromLandscape->GetTrackSplineComponent();
 
@@ -116,8 +151,15 @@ void AEpicLearningCarsCoachBase::ResetAgentsToRandomPointOnSpline()
 	AllAgentsAsActors.Reserve(AllAgentsArrayView.Num());
 	for (TObjectPtr<UObject> Other : AllAgentsArrayView)
 	{
-		AllAgentsAsActors.Add(StaticCast<AActor*>(Other));
+		// At runtime, it is possible there are not Agents registered to the MaxAgentNum
+		if (IsValid(Other))
+		{
+			AllAgentsAsActors.Add(StaticCast<AActor*>(Other));
+		}
 	}
+
+	// If we're recording for imitation, it is possible that there is only one agent (the player).
+	// An edge case, but we COULD make AllAgentsAsActors an optional parameter...
 
 	// Reset to random point on track
 	for (AActor* AgentActor : AllAgentsAsActors)

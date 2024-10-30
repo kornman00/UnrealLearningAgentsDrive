@@ -60,6 +60,11 @@ ULearningAgentsRecording* AEpicLearningCarsRecordingCoach::GetLearningAgentsReco
 
 void AEpicLearningCarsRecordingCoach::InitializeForNewTrackSpline()
 {
+	if (bRemoveAllNonPlayerAgentsAtStart)
+	{
+		this->DeleteAllPossibleAgentPawnsInWorldExceptTheLocalPlayer();
+	}
+
 	Super::InitializeForNewTrackSpline();
 
 	InitializeRecordingManagers();
@@ -149,6 +154,9 @@ void AEpicLearningCarsRecordingCoach::Tick(float DeltaTime)
 
 	if (Recorder != nullptr)
 	{
+		Controller->RunController();
+		Recorder->AddExperience();
+
 		ResetAgentsTimer += DeltaTime;
 		if (ResetAgentsTimer > CoachingParameters->AgentsResetFrequency)
 		{

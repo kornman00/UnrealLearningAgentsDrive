@@ -29,6 +29,7 @@ public:
 
 	bool IsVisualLoggerEnabledForAgent() const;
 
+	int32 GetLearningAgentId() const { return AgentId; }
 	float GetThrottleBrakeAction() const { return ThrottleBrakeAction; }
 	float GetSteeringAction() const { return SteeringAction; }
 

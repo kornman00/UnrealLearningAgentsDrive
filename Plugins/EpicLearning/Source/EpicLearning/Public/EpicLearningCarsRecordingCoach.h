@@ -55,6 +55,9 @@ public:
 	EEpicLearningImitationSource RecordingSource = EEpicLearningImitationSource::NonHuman;
 
 	UPROPERTY(EditAnywhere, Category = "Coach Settings")
+	bool bRemoveAllNonPlayerAgentsAtStart = false;
+
+	UPROPERTY(EditAnywhere, Category = "Coach Settings")
 	TObjectPtr<UEpicLearningRecordingCoachParameters> CoachingParameters = nullptr;
 
 	UPROPERTY(EditAnywhere, Category = "Coach Settings|Human")

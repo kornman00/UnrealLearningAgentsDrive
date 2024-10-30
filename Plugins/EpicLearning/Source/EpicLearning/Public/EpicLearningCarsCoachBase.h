@@ -33,7 +33,9 @@ protected:
 	bool FindWheeledVehicleTrackSplineFromLandscape();
 	void InitializeAgents();
 
-	void ResetAgentsToRandomPointOnSpline();
+	void DeleteAllPossibleAgentPawnsInWorldExceptTheLocalPlayer() const;
+
+	void ResetAgentsToRandomPointOnSpline() const;
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components", meta = (AllowPrivateAccess = "true"))
