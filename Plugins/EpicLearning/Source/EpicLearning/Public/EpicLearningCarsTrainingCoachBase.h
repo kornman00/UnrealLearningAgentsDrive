@@ -15,7 +15,7 @@ class UEpicLearningNeuralNetworks;
 class ULearningAgentsPolicy;
 class ULearningAgentsCritic;
 
-UCLASS()
+UCLASS(Abstract)
 class EPICLEARNING_API AEpicLearningCarsTrainingCoachBase : public AEpicLearningCarsCoachBase
 {
 	GENERATED_BODY()

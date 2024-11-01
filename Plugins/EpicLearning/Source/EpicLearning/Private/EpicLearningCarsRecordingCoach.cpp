@@ -166,7 +166,10 @@ void AEpicLearningCarsRecordingCoach::Tick(float DeltaTime)
 
 			ResetAgentsTimer = 0.0f;
 
-			ResetAgentsToRandomPointOnSpline();
+			if (bInhibitResettingAgentsAtRandomPointOnSpline)
+			{
+				ResetAgentsToRandomPointOnSpline();
+			}
 
 			Recorder->BeginRecording();
 		}
